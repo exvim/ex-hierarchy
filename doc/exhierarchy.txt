@@ -22,14 +22,14 @@ Contents                                     *exhierarchy*  *exhierarchy-content
 ==============================================================================
 1. Intro                                                     *exhierarchy-intro*
 
-ex-gsearch is a global search plugin for Vim. By default it use id-utils as 
-its search engine.  In ex-gsearch, you can:
+ex-hierarchy is a global search plugin for Vim. By default it use id-utils as 
+its search engine.  In ex-hierarchy, you can:
 
-  - List search result in ex-gsearch window.
-  - Filter search result by ex-gsearch's powerful filter method.
+  - List search result in ex-hierarchy window.
+  - Filter search result by ex-hierarchy's powerful filter method.
   - Jump to the search result.
 
-ex-gsearch is also a part of exVim (https://github.com/exvim/main) project
+ex-hierarchy is also a part of exVim (https://github.com/exvim/main) project
 
 ==============================================================================
 2. Requirements                                       *exhierarchy-requirements*
@@ -39,49 +39,28 @@ exhierarchy:
 
   - Vim 6.0 or higher
   - ex-utility: (https://github.com/exvim/ex-utility) 
-  - id-utils: (http://www.gnu.org/software/idutils/)
+  - id-utils: (http://www.graphviz.org/)
 
 ==============================================================================
 3. Usage                                                     *exhierarchy-usage*
 
-Enter your project, use `mkid` command create your ID file:
->
-    mkid .
-<
-
-For more details about using `mkid`, read 
-mkid-invocation (http://www.gnu.org/software/idutils/manual/idutils.html#mkid-invocation).
-You can also specified your search file by editing id-utils' language-map 
-(http://www.gnu.org/software/idutils/manual/idutils.html#Language-map). 
-
-You will see a ID file generated under your directory. 
-
-Start your Vim and try to global search a word by |:GS| <your-word>. A search 
-window will open and the search results of <your-word> will be listed in it. 
-
-You can jump to the search result by hit <CR> on the listed lines. You can also
-filter the search results by press `/` and do a search on your filter word. 
-After confirmed your search, press <leader>r and ex-gsearch will help you 
-filter the result.
+Start your Vim and type |:HV| <your-class>. The plugin will generate the class 
+hierarchies in the `hv.png` and open it by your system image viewer.
 
 ------------------------------------------------------------------------------
 COMMANDS                                                  *exhierarchy-commands*
 
-:GSearch {word}                                                     *:GSearch*
-    Global search {word} and list search result in ex-gsearch window.
+:HV {class}                                                                *:HV*
+    Genreate the hierarchies image of {class}, including its childrent and 
+    parents. Open it by your system default image viewer. 
 
-:exhierarchyCWord                                              *:exhierarchyCWord*
-    Global search <cword> (current word under cursor) and list search result 
-    in ex-gsearch window.
+:HVP {class}                                                              *:HVP*
+    Genreate the hierarchies image of {class}'s parents. Open it by your 
+    system default image viewer. 
 
-:exhierarchyToggle                                            *:exhierarchyToggle*
-    Toggle ex-gsearch window.
-
-:exhierarchyOpen                                                *:exhierarchyOpen*
-    Open ex-gsearch window.
-
-:exhierarchyClose                                              *:exhierarchyClose*
-    Close ex-gsearch window.
+:HVC {class}                                                              *:HVC*
+    Genreate the hierarchies image of {class}'s childrent. Open it by your 
+    system default image viewer. 
 
 ------------------------------------------------------------------------------
 KEY MAPPINGS                                              *exhierarchy-mappings*
@@ -94,40 +73,18 @@ Default key mappings:
 
                                                          *'exhierarchy-<Space>'*
 <Space>
-    Zoom in/out ex-gsearch window
+    Zoom in/out ex-hierarchy window
 
                                                             *'exhierarchy-<CR>'*
                                                    *'exhierarchy-<2-LeftMouse>'*
 <CR> or <2-LeftMouse>
-    Jump to the search result listed in ex-gsearch window.
+    Jump to the search result listed in ex-hierarchy window.
 
                                                           *'exhierarchy-<S-CR>'*
                                                  *'exhierarchy-<S-2-LeftMouse>'*
 <S-CR> or <S-2-LeftMouse>
     Jump to the search result and open it in edit window splitted.
     
-
-                                                       *'exhierarchy-<leader>r'*
-<leader>r
-    Filter out global search contents not include `/` searches.
-    Note: To make this work, you need to apply your `/` search result after 
-    global searches.
-
-                                                      *'exhierarchy-<leader>fr'*
-<leader>fr
-    Filter out global search files not include `/` searches.
-
-                                                       *'exhierarchy-<leader>d'*
-<leader>d
-    Filter out global search contents include `/` searches.
-    Note: To make this work, you need to apply your `/` search result after 
-    global searches.
-
-                                                      *'exhierarchy-<leader>fd'*
-<leader>fd
-    Filter out global search files include `/` searches.
-
-
 ==============================================================================
 4. Configuration                                     *exhierarchy-configuration*
 
@@ -135,47 +92,26 @@ Default key mappings:
 g:ex_hierarchy_winsize~
 Default: 20
 
-The window size of ex-gsearch window.  
+The window size of ex-hierarchy window.  
 
                                                    *g:ex_hierarchy_winsize_zoom*
 g:ex_hierarchy_winsize_zoom~
 Default: 40
 
-The zoomed size of ex-gsearch window.
+The zoomed size of ex-hierarchy window.
 
                                                          *g:ex_hierarchy_winpos*
 g:ex_hierarchy_winpos~
 Default: 'bottom'
 Options: 'left', 'right', 'top', 'bottom'
 
-The position of ex-gsearch window.
+The position of ex-hierarchy window.
 
                                                     *g:ex_hierarchy_enable_help*
 g:ex_hierarchy_enable_help~
 Default: 1
 
 Enable help text in the plugin
-
-                                                    *g:ex_hierarchy_ignore_case*
-g:ex_hierarchy_ignore_case~
-Default: 1
-
-Enable case sensitive search for |:GSearch|. Remember even we ignore case, 
-|:GSearch| always accept smart case.
-
-                                                    *g:ex_hierarchy_enable_sort*
-g:ex_hierarchy_enable_sort~
-Default: 1
-
-Enable sorting the search result by file name.
-
-                                           *g:ex_hierarchy_sort_lines_threshold*
-g:ex_hierarchy_sort_lines_threshold~
-Default: 100
-
-The threshold to enable sorting. If the search resultes more than the search
-threshold, ex-gsearch will not doing sort even |g:ex_hierarchy_enable_sort| set
-to 1.
 
 ------------------------------------------------------------------------------
 HIGHLIGHT COLOURS                                     *exhierarchy-highlighting*
@@ -189,15 +125,6 @@ ex_hi_help_key~
 ex_hi_help_comma~
     Help comma
 
-ex_hi_header~
-    Search result title
-
-ex_hi_filename~
-    Search result filename
-
-ex_hi_linenr~
-    Search result line number
-
 If you want to change any of those colours put a line like the following in
 your vimrc:
 >
@@ -210,40 +137,42 @@ See |:highlight| for more information.
 
                                                  *exhierarchy#register_hotkey()*
 exhierarchy#register_hotkey({priority}, {key}, {action}, {desc})
-    Register your key-mapping by {key} in ex-gsearch window. The {key} will 
+    Register your key-mapping by {key} in ex-hierarchy window. The {key} will 
     execute function you define in {action}. The {priority} will sort your
-    {key} and {desc} in the help context in ex-gsearch window.
+    {key} and {desc} in the help context in ex-hierarchy window.
 
-                                                     *exhierarchy#set_id_file()*
-exhierarchy#set_id_file({path})
-    Set the id file path. For example, if you put your mkid generated ID file
-    in './.mkid/', you can write:
+                                               *exhierarchy#set_inheirts_file()*
+exhierarchy#set_inheirts_file({path})
+    Set the inherits file path. For example, if you put your 
+    inherits file in './.inherits/', you can write:
 >
-    call exhierarchy#set_id_file('./.mkid/ID')
+    call exhierarchy#set_id_file('./.inherits/data')
+<
+
+                                                    *exhierarchy#set_dot_file()*
+exhierarchy#set_dot_file({path})
+    Set the dot file path. For example, if you put your 
+    dot file in './.inherits/', you can write:
+>
+    call exhierarchy#set_id_file('./.inherits/hv.dot')
+<
+
+                                                    *exhierarchy#set_img_file()*
+exhierarchy#set_img_file({path})
+    Set the image file path. For example, if you put your 
+    image file in './.image/', you can write:
+>
+    call exhierarchy#set_id_file('./.inherits/hv.png')
 <
 
 ==============================================================================
 6. Troubleshooting & Known issues                           *exhierarchy-issues*
 
-mkid: Can’t create ID in C:\ in Windows~
-
-If you use mkid and meet the following message on Windows:
-
->
-    mkid: can’t get working directory: Permission denied
-<
-
-This is probably a bug for GnuWin32 id-utils, it can not create ID in C:\, 
-I don’t have time to debug the mkid win32 souce code, so currently the solution 
-is: Put you project in in D:\ or other volumn instead. 
-
-If some one can fix this problem, please, please send us your patches! 
-
 
 ==============================================================================
 7. History                                                 *exhierarchy-history*
 
-0.1.0 (2014-04-14)
+0.1.0 (2014-05-10)
     - Initial release
 
 ==============================================================================
