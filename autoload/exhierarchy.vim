@@ -205,19 +205,20 @@ function s:get_inherits( name, method )
         let inherits_list += s:get_children_recursively( parsed_pattern, children_inherits_list, file_list )
     else
         if a:method == 'parent'
-            let pattern = "-> "" . a:name . '"'
+            let pattern = '-> "' . a:name . '"'
         elseif a:method == 'children'
             let pattern = '"' . a:name . '" ->'
         endif
 
         " first filter
-        let inherits_list += filter( copy(file_list), 'v:val =~ pattern' )
+        let tmp_inherits_list = filter( copy(file_list), 'v:val =~ pattern' )
+        let inherits_list += tmp_inherits_list
 
         " processing inherits
         if a:method == 'parent'
-            let inherits_list += s:get_parent_recursively( parsed_pattern, inherits_list, file_list )
+            let inherits_list += s:get_parent_recursively( parsed_pattern, tmp_inherits_list, file_list )
         elseif a:method == 'children'
-            let inherits_list += s:get_children_recursively( parsed_pattern, inherits_list, file_list )
+            let inherits_list += s:get_children_recursively( parsed_pattern, tmp_inherits_list, file_list )
         endif
     endif
 
