@@ -11,12 +11,6 @@ For more details, check [exVim's Docs: View Class Hierarchies](http://exvim.gith
 
 - - -
 
-The inherit map for classes
-
-```bash
-brew install graphviz
-```
-
 # Intro
 
 ex-hierarchy is a plugin working under exVim. It will generate the class inherit relationship 
