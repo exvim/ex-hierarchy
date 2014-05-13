@@ -82,6 +82,9 @@ To install using [NeoBundle](https://github.com/Shougo/neobundle.vim):
 
 ## Usage
 
+**NOTE:** This plugin currently is highly depends on exVim. You need to running `:Update`
+command in exVim before using it.
+
 Enter your project, use `:HV your-class` to generate your class hierarchies.
 
 More details, check `:help exhierarchy`.
