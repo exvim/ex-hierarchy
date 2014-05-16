@@ -24,8 +24,8 @@ function exhierarchy#bind_mappings()
 endfunction
 
 " exhierarchy#register_hotkey {{{2
-function exhierarchy#register_hotkey( priority, key, action, desc )
-    call ex#keymap#register( s:keymap, a:priority, a:key, a:action, a:desc )
+function exhierarchy#register_hotkey( priority, local, key, action, desc )
+    call ex#keymap#register( s:keymap, a:priority, a:local, a:key, a:action, a:desc )
 endfunction
 
 " exhierarchy#toggle_help {{{2

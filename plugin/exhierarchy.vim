@@ -43,13 +43,13 @@ command! EXHierarchyClose call exhierarchy#close_window()
 "}}}
 
 " default key mappings {{{1
-call exhierarchy#register_hotkey( 1  , '<F1>'            , ":call exhierarchy#toggle_help()<CR>"           , 'Toggle help.' )
-call exhierarchy#register_hotkey( 2  , '<ESC>'           , ":EXHierarchyClose<CR>"                         , 'Close window.' )
-call exhierarchy#register_hotkey( 3  , '<Space>'         , ":call exhierarchy#toggle_zoom()<CR>"           , 'Zoom in/out project window.' )
-call exhierarchy#register_hotkey( 4  , '<CR>'            , ":call exhierarchy#confirm_select('')<CR>"      , 'Go to the search result.' )
-call exhierarchy#register_hotkey( 5  , '<2-LeftMouse>'   , ":call exhierarchy#confirm_select('')<CR>"      , 'Go to the search result.' )
-call exhierarchy#register_hotkey( 6  , '<S-CR>'          , ":call exhierarchy#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
-call exhierarchy#register_hotkey( 7  , '<S-2-LeftMouse>' , ":call exhierarchy#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
+call exhierarchy#register_hotkey( 1 , 1, '<F1>'            , ":call exhierarchy#toggle_help()<CR>"           , 'Toggle help.' )
+call exhierarchy#register_hotkey( 2 , 1, '<ESC>'           , ":EXHierarchyClose<CR>"                         , 'Close window.' )
+call exhierarchy#register_hotkey( 3 , 1, '<Space>'         , ":call exhierarchy#toggle_zoom()<CR>"           , 'Zoom in/out project window.' )
+call exhierarchy#register_hotkey( 4 , 1, '<CR>'            , ":call exhierarchy#confirm_select('')<CR>"      , 'Go to the search result.' )
+call exhierarchy#register_hotkey( 5 , 1, '<2-LeftMouse>'   , ":call exhierarchy#confirm_select('')<CR>"      , 'Go to the search result.' )
+call exhierarchy#register_hotkey( 6 , 1, '<S-CR>'          , ":call exhierarchy#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
+call exhierarchy#register_hotkey( 7 , 1, '<S-2-LeftMouse>' , ":call exhierarchy#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
 "}}}
 
 call ex#register_plugin( 'exhierarchy', { 'actions': ['autoclose'] } )
