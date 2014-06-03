@@ -44,7 +44,11 @@ command! EXHierarchyClose call exhierarchy#close_window()
 
 " default key mappings {{{1
 call exhierarchy#register_hotkey( 1 , 1, '<F1>'            , ":call exhierarchy#toggle_help()<CR>"           , 'Toggle help.' )
-call exhierarchy#register_hotkey( 2 , 1, '<ESC>'           , ":EXHierarchyClose<CR>"                         , 'Close window.' )
+if has('gui_running')
+    call exhierarchy#register_hotkey( 2 , 1, '<ESC>'           , ":EXHierarchyClose<CR>"                         , 'Close window.' )
+else
+    call exhierarchy#register_hotkey( 2 , 1, '<leader><ESC>'   , ":EXHierarchyClose<CR>"                         , 'Close window.' )
+endif
 call exhierarchy#register_hotkey( 3 , 1, '<Space>'         , ":call exhierarchy#toggle_zoom()<CR>"           , 'Zoom in/out project window.' )
 call exhierarchy#register_hotkey( 4 , 1, '<CR>'            , ":call exhierarchy#confirm_select('')<CR>"      , 'Go to the search result.' )
 call exhierarchy#register_hotkey( 5 , 1, '<2-LeftMouse>'   , ":call exhierarchy#confirm_select('')<CR>"      , 'Go to the search result.' )
