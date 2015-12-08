@@ -55,7 +55,9 @@ endfunction
 
 function exhierarchy#init_buffer()
     set filetype=exhierarchy
-    au! BufWinLeave <buffer> call <SID>on_close()
+    augroup exhierarchy
+        au! BufWinLeave <buffer> call <SID>on_close()
+    augroup END
 
     if line('$') <= 1 && g:ex_hierarchy_enable_help
         silent call append ( 0, s:help_text )
